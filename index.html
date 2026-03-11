@@ -3,136 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenClaw 安装服务 - 专业部署配置</title>
+    <title>OpenClaw 安装服务 - 专业部署 · 远程配置 · 一对一支持</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f0f; color: #fff; line-height: 1.6; }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        .hero { text-align: center; padding: 60px 0; }
-        .hero h1 { font-size: 2.5em; margin-bottom: 20px; background: linear-gradient(135deg, #ff6b6b, #feca57); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { font-size: 1.2em; color: #888; max-width: 600px; margin: 0 auto; }
-        .pricing { display: grid; gap: 20px; margin: 40px 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 60px 20px; }
+        .logo { font-size: 48px; margin-bottom: 20px; }
+        h1 { font-size: 36px; margin-bottom: 16px; background: linear-gradient(135deg, #ff6b6b, #ffa500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { font-size: 18px; color: #888; margin-bottom: 40px; }
+        .stats { display: flex; justify-content: center; gap: 40px; margin: 40px 0; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat-num { font-size: 32px; font-weight: bold; color: #ffa500; }
+        .stat-label { font-size: 14px; color: #666; }
+        .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 40px 0; }
         .card { background: #1a1a1a; border-radius: 16px; padding: 30px; border: 1px solid #333; transition: all 0.3s; }
-        .card:hover { border-color: #ff6b6b; transform: translateY(-4px); }
-        .card.featured { border-color: #ff6b6b; position: relative; }
-        .card.featured::before { content: '推荐'; position: absolute; top: -12px; right: 20px; background: #ff6b6b; color: #fff; padding: 4px 12px; border-radius: 12px; font-size: 0.8em; }
-        .card h3 { font-size: 1.5em; margin-bottom: 10px; }
-        .card .price { font-size: 2.5em; font-weight: bold; color: #feca57; margin: 15px 0; }
-        .card .price span { font-size: 0.4em; color: #888; }
-        .card ul { list-style: none; margin: 20px 0; }
-        .card li { padding: 8px 0; padding-left: 24px; position: relative; color: #aaa; }
-        .card li::before { content: '✓'; position: absolute; left: 0; color: #4ade80; }
-        .btn { display: block; background: linear-gradient(135deg, #ff6b6b, #ff8e53); color: #fff; text-align: center; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 20px; transition: all 0.3s; }
-        .btn:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3); }
+        .card:hover { border-color: #ffa500; transform: translateY(-5px); }
+        .card.featured { border-color: #ffa500; position: relative; }
+        .card.featured::before { content: '推荐'; position: absolute; top: -10px; left: 20px; background: #ffa500; color: #000; padding: 2px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+        .card-title { font-size: 20px; font-weight: bold; margin-bottom: 8px; }
+        .card-price { font-size: 36px; font-weight: bold; color: #ffa500; margin-bottom: 20px; }
+        .card-price span { font-size: 14px; color: #666; }
+        .card-features { list-style: none; margin-bottom: 20px; }
+        .card-features li { padding: 8px 0; color: #aaa; }
+        .card-features li::before { content: '✓ '; color: #4ade80; }
+        .btn { display: block; text-align: center; background: #ffa500; color: #000; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s; }
+        .btn:hover { background: #ffb733; transform: scale(1.02); }
         .faq { margin: 60px 0; }
-        .faq h2 { font-size: 1.8em; margin-bottom: 30px; text-align: center; }
-        .faq-item { background: #1a1a1a; border-radius: 12px; padding: 20px; margin-bottom: 15px; }
-        .faq-item h4 { color: #feca57; margin-bottom: 10px; }
-        .faq-item p { color: #888; }
-        .contact { text-align: center; padding: 40px 0; border-top: 1px solid #333; }
-        .contact h2 { margin-bottom: 20px; }
-        .contact-methods { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-        .contact-method { background: #1a1a1a; padding: 20px 30px; border-radius: 12px; }
-        .contact-method .label { color: #888; font-size: 0.9em; }
-        .contact-method .value { color: #fff; font-size: 1.1em; margin-top: 5px; }
-        footer { text-align: center; padding: 40px 0; color: #555; font-size: 0.9em; }
+        .faq h2 { font-size: 24px; margin-bottom: 30px; text-align: center; }
+        .faq-item { background: #1a1a1a; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+        .faq-q { padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-q:hover { background: #222; }
+        .faq-a { padding: 0 20px 16px; color: #888; display: none; }
+        .contact { text-align: center; padding: 40px; background: #1a1a1a; border-radius: 16px; margin: 40px 0; }
+        .contact h2 { margin-bottom: 16px; }
+        .contact p { color: #888; margin-bottom: 20px; }
+        footer { text-align: center; padding: 40px; color: #444; font-size: 14px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="hero">
-            <h1>🦞 OpenClaw 安装服务</h1>
-            <p>专业部署配置，让你的 AI 助手快速上线。无需技术背景，一站式搞定。</p>
-        </div>
-        
+        <header>
+            <div class="logo">🦞</div>
+            <h1>OpenClaw 安装服务</h1>
+            <p class="subtitle">专业部署 · 远程配置 · 一对一支持</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-num">50+</div>
+                    <div class="stat-label">成功部署</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">30分钟</div>
+                    <div class="stat-label">平均交付</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">7天</div>
+                    <div class="stat-label">售后支持</div>
+                </div>
+            </div>
+        </header>
+
         <div class="pricing">
             <div class="card">
-                <h3>基础安装</h3>
-                <div class="price">¥99 <span>/ 次</span></div>
-                <ul>
+                <div class="card-title">基础安装</div>
+                <div class="card-price">¥99 <span>/次</span></div>
+                <ul class="card-features">
                     <li>远程安装 OpenClaw</li>
                     <li>基础配置调试</li>
-                    <li>接入一个 AI 模型</li>
-                    <li>文字教程文档</li>
-                    <li>7 天问题解答</li>
+                    <li>模型 API 配置</li>
+                    <li>7天微信支持</li>
                 </ul>
                 <a href="#contact" class="btn">立即咨询</a>
             </div>
-            
             <div class="card featured">
-                <h3>高级配置</h3>
-                <div class="price">¥299 <span>/ 次</span></div>
-                <ul>
+                <div class="card-title">高级配置</div>
+                <div class="card-price">¥299 <span>/次</span></div>
+                <ul class="card-features">
                     <li>包含基础安装全部内容</li>
                     <li>Telegram/Discord 接入</li>
-                    <li>安装 2 个实用 Skills</li>
-                    <li>语音交互配置</li>
-                    <li>30 天技术支持</li>
+                    <li>2个精选 Skills 安装</li>
+                    <li>使用技巧培训</li>
+                    <li>30天微信支持</li>
                 </ul>
                 <a href="#contact" class="btn">立即咨询</a>
             </div>
-            
             <div class="card">
-                <h3>企业定制</h3>
-                <div class="price">¥999 <span>/ 次</span></div>
-                <ul>
+                <div class="card-title">企业定制</div>
+                <div class="card-price">¥999 <span>/次</span></div>
+                <ul class="card-features">
                     <li>包含高级配置全部内容</li>
-                    <li>多平台同时接入</li>
-                    <li>安装 5 个定制 Skills</li>
-                    <li>团队协作配置</li>
-                    <li>60 天专属支持</li>
-                    <li>一次免费升级服务</li>
+                    <li>多平台接入（微信/飞书等）</li>
+                    <li>5个定制 Skills</li>
+                    <li>企业级安全配置</li>
+                    <li>90天专属支持</li>
                 </ul>
                 <a href="#contact" class="btn">立即咨询</a>
             </div>
         </div>
-        
+
         <div class="faq">
             <h2>常见问题</h2>
             <div class="faq-item">
-                <h4>安装需要多长时间？</h4>
-                <p>基础安装约 30 分钟，高级配置约 1-2 小时，企业定制根据需求协商。</p>
+                <div class="faq-q">安装需要多长时间？<span>+</span></div>
+                <div class="faq-a">基础安装约30分钟，高级配置约1-2小时，企业定制根据需求协商。</div>
             </div>
             <div class="faq-item">
-                <h4>需要准备什么？</h4>
-                <p>一台电脑（Mac/Windows/Linux均可）、稳定的网络、AI 模型的 API Key（可帮你申请）。</p>
+                <div class="faq-q">需要准备什么？<span>+</span></div>
+                <div class="faq-a">一台电脑（Mac/Windows均可），稳定的网络，以及模型API密钥（DeepSeek新用户免费送500万tokens）。</div>
             </div>
             <div class="faq-item">
-                <h4>支持哪些 AI 模型？</h4>
-                <p>DeepSeek、GLM-4、Claude、GPT-4 等主流模型都支持。推荐 DeepSeek，便宜好用。</p>
+                <div class="faq-q">支持哪些模型？<span>+</span></div>
+                <div class="faq-a">支持所有主流模型：DeepSeek、GLM、Claude、GPT-4等。推荐DeepSeek，性价比最高。</div>
             </div>
             <div class="faq-item">
-                <h4>安装后能用多久？</h4>
-                <p>永久使用，无订阅费用。你只需要支付 AI 模型的 API 费用（DeepSeek 约 ¥1/天）。</p>
-            </div>
-            <div class="faq-item">
-                <h4>如何付款？</h4>
-                <p>支持微信、支付宝。先服务后付款，满意再付。</p>
+                <div class="faq-q">安装后能做什么？<span>+</span></div>
+                <div class="faq-a">可以用来聊天、写代码、翻译、总结文档、自动化工作流等。安装Skills后还能扩展更多能力。</div>
             </div>
         </div>
-        
+
         <div class="contact" id="contact">
-            <h2>联系方式</h2>
-            <div class="contact-methods">
-                <div class="contact-method">
-                    <div class="label">微信</div>
-                    <div class="value">扫描下方二维码</div>
-                </div>
-                <div class="contact-method">
-                    <div class="label">Telegram</div>
-                    <div class="value">@openclaw_service</div>
-                </div>
-                <div class="contact-method">
-                    <div class="label">邮箱</div>
-                    <div class="value">openclaw@service.com</div>
-                </div>
-            </div>
+            <h2>立即开始</h2>
+            <p>添加微信或发送邮件，描述你的需求</p>
+            <p style="font-size: 20px; font-weight: bold; margin: 20px 0;">微信：your_wechat_id</p>
+            <p style="color: #888;">或发送邮件到：your@email.com</p>
+            <p style="margin-top: 20px; color: #666; font-size: 14px;">工作时间：9:00-22:00，通常30分钟内回复</p>
         </div>
-        
+
         <footer>
-            <p>© 2026 OpenClaw 安装服务 | 专注 AI 助手部署</p>
-            <p style="margin-top: 10px;"><a href="https://openclaw.ai" style="color: #666;">OpenClaw 官网</a> | <a href="https://github.com/openclaw/openclaw" style="color: #666;">GitHub</a></p>
+            <p>© 2026 OpenClaw 安装服务 | 基于 <a href="https://openclaw.ai" style="color: #666;">OpenClaw</a> 开源项目</p>
         </footer>
     </div>
+    <script>
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.onclick = () => {
+                const a = q.nextElementSibling;
+                a.style.display = a.style.display === 'block' ? 'none' : 'block';
+                q.querySelector('span').textContent = a.style.display === 'block' ? '−' : '+';
+            };
+        });
+    </script>
 </body>
 </html>
